@@ -1,0 +1,40 @@
+<?php $__env->startSection('content'); ?>
+  <h2>Add a new user NOW!</h2>
+
+  <?php echo Form::open(['route'=>'users.store']); ?>
+    <div class="row">
+      <div class="col-xs-4 col-xs-offset-4">
+    <?php echo Form::label('username', 'Username: ', array('class'=>'control-label')); ?>
+    <?php echo Form::text('username', '', array('class'=>'form-control')); ?>
+    <?php echo $errors->first('username'); ?>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4 col-xs-offset-4">
+    <?php echo Form::label('email', 'E-mail: ', array('class'=>'control-label')); ?>
+    <?php echo Form::email('email', '', array('class'=>'form-control')); ?>
+    <?php echo $errors->first('email'); ?>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4 col-xs-offset-4">
+    <?php echo Form::label('password', 'Password: ', array('class'=>'control-label')); ?>
+    <?php echo Form::password('password', array('class'=>'form-control')); ?>
+    <?php echo $errors->first('password'); ?>
+       </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4 col-xs-offset-4">
+    <p><strong>Ich stimme den Nutzungsbedienungen zu <strong> <?php echo Form::checkbox('terms', 'yes', false); ?></p>
+    <?php echo $errors->first('terms'); ?>
+       </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4 col-xs-offset-4">
+    <?php echo Form::submit('Add User!', array('class' => 'btn btn-primary')); ?>
+       </div>
+    </div>
+  <?php echo Form::close(); ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layout.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

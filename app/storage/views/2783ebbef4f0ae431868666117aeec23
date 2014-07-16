@@ -1,0 +1,18 @@
+<?php $__env->startSection('content'); ?>
+  <div class="row">
+    <div class="col-sm-12">
+      <?php echo Form::open(array('route'=>'income.update')); ?>
+      <?php foreach($records as $record): ?>
+        <div class="input-group">
+            <span class="input-group-addon">$</span>
+            <?php echo Form::text('amount', $record->amount, array('class'=>'form-control')); ?>
+            </div>
+            <?php echo Form::select('categories', $categories, '', array('class'=>'form-control')); ?>
+            <?php echo Form::text('description', $record->income_desc); ?>
+          <?php echo Form::close(); ?>
+        </div>
+      <?php endforeach; ?>
+  </div>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layout.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,36 @@
+<?php $__env->startSection('content'); ?>
+  <h1>Income Categories</h1>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-offset-4 col-sm-4">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        <?php foreach($categories as $catId=>$catVal): ?>
+          <tr>
+          <?php if(isset($_GET['category']) && $_GET['category'] == $catId): ?>
+          <?php echo Form::open(array('route'=> array('income-category.update', $catId), 'method'=>'PUT')); ?>
+            <td><?php echo Form::text('category_name', $catVal); ?> <br><?php echo $errors->first('income'); ?></td>
+            <td>
+              <?php echo Form::submit('Save', ['category'=>$catId, 'class'=>'btn btn-success btn-sm', 'title'=>'Save']); ?>&nbsp;
+              <?php echo HTML::linkAction('IncomeCategoryController@index', 'Cancel', null, ['class'=>'btn btn-default btn-sm', 'title'=>'Cancel']); ?>
+            </td>
+          <?php echo Form::close(); ?>
+          <?php else: ?>
+            <td><?php echo $catVal; ?></td>
+            <td><?php echo HTML::linkAction('IncomeCategoryController@index', '', ['category'=>$catId], ['class'=>'glyphicon glyphicon-pencil shadow pointer', 'title'=>'Edit']); ?></td>
+          <?php endif; ?>
+          </tr>
+        <?php endforeach; ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layout.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

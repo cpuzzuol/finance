@@ -1,0 +1,27 @@
+<!--$categories passed from UserController@create (it's a list of income categories from the fin_income_category table)-->
+
+
+<?php $__env->startSection('content'); ?>
+  <p>At the top, allow for the entry of expenditures</p>
+  <p>At the bottom, show a list of entries by day for the current month and allow user to swipe side-to-side to see daily budget</p>
+
+  <?php echo Form::open(array('route'=>'income.store')); ?>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="input-group">
+        <span class="input-group-addon">$</span>
+        <?php echo Form::text('amount', '', array('class'=>'form-control')); ?>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <?php echo Form::select('categories', $categories, '', array('class'=>'form-control')); ?>
+    </div>
+    <div class="col-sm-4">
+      <?php echo Form::hidden('table_name', 'fin_income'); ?>
+      <?php echo Form::submit('save amount', array('class'=>'form-control btn btn-success')); ?>
+    </div>
+  </div>
+  <?php echo Form::close(); ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layout.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
