@@ -56,7 +56,7 @@ class UserController extends \BaseController {
 
     $newUser = User::create($input);
 
-    return View::make('users.edit', ['id'=>$newUser->id];
+    return View::make('users.edit', ['id'=>$newUser->id]);
 	}
 
 
