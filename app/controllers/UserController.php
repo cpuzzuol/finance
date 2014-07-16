@@ -48,15 +48,21 @@ class UserController extends \BaseController {
       'email' => Input::get('email'),
       'terms' => Input::get('terms')
     ];
+    $rules = [
+      'username' => 'required',
+      'password' => 'required',
+      'email' => 'required',
+      'terms' => 'accepted'
+    ];
 
+    $validation = new Validating\ValidateForms($rules);
 
-    if(!User::isValid($input)){
-      return Redirect::back()->withInput()->withErrors(User::$errors);
+    if($validation->passes()){
+       $newUser = $this->user->create($input);
+       return View::make('users.edit', ['id'=>$newUser->id]);
     }
 
-    $newUser = User::create($input);
-
-    return View::make('users.edit', ['id'=>$newUser->id]);
+    return Redirect::back()->withInput()->withErrors($validation->getErrors());
 	}
 
 

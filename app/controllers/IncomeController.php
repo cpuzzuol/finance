@@ -39,19 +39,30 @@ class IncomeController extends \BaseController {
 	 */
 	public function store()
 	{
-    $newIncome = [
-      'user_id' => '1',
+    $input = [
+      'user_id' => Auth::id(),
       'income_id' => Input::get('categories'),
-      'username' => Input::get('username'),
       'income_desc' => 'Test YO!',
       'income_date' => date('Y-m-d'),
       'amount' => Input::get('amount')
     ];
+    $rules = [
+      'user_id' => 'integer',
+      'income_id' => 'integer',
+      'income_date' => 'dateFormat:YYYY-MM-DD',
+      'amount' => 'numeric'
+    ];
 
-    $bully = $this->income->create($newIncome);
+    $validation = new Validating\ValidateForms($rules);
+
+    if($validation->passes()){
+      $newRecord = $this->income->create($input);
+      return Redirect::route('income.edit', array('id' => $newRecord->id));
+    }
+
+    return Redirect::back()->withInput()->withErrors($validation->getErrors());
 
 
-    return Redirect::route('income.edit', array('id' => $bully->id));
 	}
 
 

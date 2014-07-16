@@ -73,20 +73,20 @@ class IncomeCategoryController extends \BaseController {
 	 */
 	public function update($id)
 	{
-    $input = [
-      'income' => Input::get('category_name')
-    ];
+    $input = ['income' => Input::get('category_name')];
+    $rules = ['category_name' => 'required'];
 
-    //return IncomeCategory::isValid($input);
-    if(!IncomeCategory::isValid($input)){
-      return Redirect::back()->withInput()->withErrors(IncomeCategory::$errors);
+    $validation = new Validating\ValidateForms($rules);
+
+    if($validation->passes()){
+      $record = $this->incomeCategory->find($id);
+      $record->income = Input::get('category_name');
+      $record->save();
+
+      return View::make('income-category.index')->with('categories', IncomeCategory::lists('income','id'));
     }
 
-	  $record = $this->incomeCategory->find($id);
-    $record->income = Input::get('category_name');
-    $record->save();
-
-    return View::make('income-category.index')->with('categories', IncomeCategory::lists('income','id'));
+    return Redirect::back()->withInput()->withErrors($validation->getErrors());
 	}
 
 

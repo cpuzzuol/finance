@@ -19,13 +19,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
   protected $fillable = ['username','email','password'];
 
-  //store validation rules
-  public static $rules = [
-    'username' => 'required',
-    'password' => 'required',
-    'email' => 'required',
-    'terms' => 'accepted'
-  ];
 
   public static $errors;
 
@@ -37,22 +30,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 * @var array
 	 */
 	protected $hidden = array('password', 'remember_token');
-
-  public static function isValid($data){
-     //$err = Validating\ValidateForms::isValid($data, static::$rules);
-     //static::$errors = $err;
-
-    if(!Validating\ValidateForms::isValid($data, static::$rules)){
-       static::$errors = Validating\ValidateForms::$errors;
-       return false;
-     } else {
-       return true;
-     }
-  }
-
-
-
-
 
   public function getAuthIdentifier()
   {

@@ -16,7 +16,7 @@
           <tr>
           @if(isset($_GET['category']) && $_GET['category'] == $catId)
           {{ Form::open(array('route'=> array('income-category.update', $catId), 'method'=>'PUT')) }}
-            <td>{{ Form::text('category_name', $catVal) }} <br>{{ $errors->first('income') }}</td>
+            <td>{{ Form::text('category_name', $catVal) }} <br>{{ $errors->first('category_name') }}</td>
             <td>
               {{ Form::submit('Save', ['category'=>$catId, 'class'=>'btn btn-success btn-sm', 'title'=>'Save']) }}&nbsp;
               {{ HTML::linkAction('IncomeCategoryController@index', 'Cancel', null, ['class'=>'btn btn-default btn-sm', 'title'=>'Cancel']) }}
