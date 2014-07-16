@@ -6,20 +6,28 @@
  *
  */
 
-abstract class ValidateForms{
+class ValidateForms{
 
-  public static $errors;
+  protected $input;
+  protected $errors;
 
-  public static function isValid($data, $rules){
-
-     $validator = \Validator::make($data, $rules);
-     if($validator->passes()) return true;
-
-     //assign errors to a static property
-     static::$errors = $validator->messages();
-
-     //return static::$errors;
-     return false;
+  public function __construct($rules, $input = NULL){
+    $this->rules = $rules;
+    $this->input = $input ?: \Input::all();
   }
 
+  //code for when validation is successful or unsuccessful
+  public function passes(){
+    $validation = \Validator::make($this->input, $this->rules);
+
+    if($validation->passes()) return true;
+
+    $this->errors = $validation->messages();
+
+    return false;
+  }
+
+  public function getErrors(){
+    return $this->errors;
+  }
 }

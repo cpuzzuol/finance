@@ -95,19 +95,21 @@ class UserController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$input = [
-      'email' => Input::get('email')
-    ];
+		$rules = ['email' => 'required'];
+    $input = ['email' => Input::get('email')];
 
-    if(!User::isValid($input)){
-      return Redirect::back()->withInput()->withErrors(User::$errors);
+    $validation = new Validating\ValidateForms($rules);
+
+    if($validation->passes()){
+      //'user' in this case is from the USER MODEL
+      $record = $this->user->find($id);
+      $record->email = Input::get('email');
+      $record->save();
+
+      return Redirect::route('users.index');
     }
 
-	  $record = $this->user->find($id);
-    $record->email = Input::get('email');
-    $record->save();
-
-    return View::make('users.index');
+    return Redirect::back()->withInput()->withErrors($validation->getErrors());
 	}
 
 
