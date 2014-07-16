@@ -54,9 +54,9 @@ class UserController extends \BaseController {
       return Redirect::back()->withInput()->withErrors(User::$errors);
     }
 
-    User::create($input);
+    $newUser = User::create($input);
 
-    return $input;
+    return View::make('users.edit', ['id'=>$newUser->id];
 	}
 
 
@@ -81,7 +81,9 @@ class UserController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$newUser = $this->user->where('id','=',$id)->get();
+
+    return View::make('users.edit', array('newUser'=> $newUser));
 	}
 
 
@@ -93,7 +95,19 @@ class UserController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$input = [
+      'email' => Input::get('email')
+    ];
+
+    if(!User::isValid($input)){
+      return Redirect::back()->withInput()->withErrors(User::$errors);
+    }
+
+	  $record = $this->user->find($id);
+    $record->email = Input::get('email');
+    $record->save();
+
+    return View::make('users.index');
 	}
 
 

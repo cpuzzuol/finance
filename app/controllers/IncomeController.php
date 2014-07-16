@@ -77,8 +77,6 @@ class IncomeController extends \BaseController {
 	{
     $newRecord = $this->income->where('id','=',$id)->get();
 
-
-
     return View::make('income.edit', array('records'=> $newRecord, 'categories' => $this->categories->show(null)));
 	}
 
