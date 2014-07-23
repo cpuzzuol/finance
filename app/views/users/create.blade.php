@@ -1,7 +1,13 @@
 @extends('layout.default')
 
 @section('content')
-  <h2>Add a new user NOW!</h2>
+
+  <!-- CREATE USER -->
+  <div class="row">
+    <div class="col-xs-12 col-sm-offset-4 col-sm-4">
+      <h2>Add a new user NOW!</h2>
+    </div>
+  </div>
 
   {{ Form::open(['route'=>'users.store']) }}
     <div class="row">
@@ -27,7 +33,7 @@
     </div>
     <div class="row">
       <div class="col-xs-4 col-xs-offset-4">
-    <p><strong>Ich stimme den Nutzungsbedienungen zu <strong> {{ Form::checkbox('terms', 'yes', false) }}</p>
+    <p>{{ Form::checkbox('terms', 'yes', false) }} <strong>I agree to the terms. </strong></p>
     {{ $errors->first('terms') }}
        </div>
     </div>

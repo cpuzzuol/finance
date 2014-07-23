@@ -19,7 +19,7 @@ class UserController extends \BaseController {
 	public function index()
 	{
     $users = $this->user->all();
-    return View::make('users.index')->with('users', $users);
+    return View::make('index')->with('users', $users);
 	}
 
 
@@ -112,7 +112,8 @@ class UserController extends \BaseController {
       $record->email = Input::get('email');
       $record->save();
 
-      return Redirect::route('users.index');
+      //appending 'with' sets a Session key/value pair of 'message' => 'success'
+      return Redirect::route('users.edit', array('id'=>$id))->with('message', 'success');
     }
 
     return Redirect::back()->withInput()->withErrors($validation->getErrors());

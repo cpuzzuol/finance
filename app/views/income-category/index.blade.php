@@ -1,7 +1,16 @@
 @extends('layout.default')
 @section('content')
-  <h1>Income Categories</h1>
 
+  <!-- LIST OF INCOME CATEGORIES-->
+  @if(Session::has('message'))
+    {{ HTML::userupdate(Session::get('message')) }}
+  @endif
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-offset-4 col-sm-4">
+      <h2>Income Categories</h2>
+    </div>
+  </div>
   <div class="row">
     <div class="col-xs-12 col-sm-offset-4 col-sm-4">
       <table class="table">

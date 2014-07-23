@@ -15,7 +15,7 @@ class IncomeCategoryController extends \BaseController {
 	 */
 	public function index()
 	{
-    return View::make('income-category.index')->with('categories', IncomeCategory::lists('income','id'));
+    return View::make('income-category.index')->with(array('categories'=> IncomeCategory::lists('income','id'), 'message'=>'success'));
 	}
 
 
@@ -83,7 +83,7 @@ class IncomeCategoryController extends \BaseController {
       $record->income = Input::get('category_name');
       $record->save();
 
-      return View::make('income-category.index')->with('categories', IncomeCategory::lists('income','id'));
+      return View::make('income-category.index')->with(array('categories'=> IncomeCategory::lists('income','id'), 'message'=>'success'));
     }
 
     return Redirect::back()->withInput()->withErrors($validation->getErrors());

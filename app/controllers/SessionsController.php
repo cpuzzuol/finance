@@ -36,9 +36,9 @@ class SessionsController extends \BaseController {
 	 */
 	public function store()
 	{
-		if(Auth::attempt(Input::only('username','password'))){
+		if(Auth::attempt(Input::only('username','password'), true)){
 
-      return "Willkommen " . Auth::user()->username;
+      return View::make('index')->with('username', Auth::user()->username);
 
     }
 

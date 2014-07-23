@@ -3,7 +3,12 @@
 @section('content')
   <div class="jumbotron">
     <div class="container">
-      <h1>Let's gooooo</h1>
+      <h1>Let's gooooo
+         @if(Auth::check())
+           {{ Auth::user()->username }}
+         @endif
+
+      </h1>
     </div>
   </div> <!--/end .jumbotron-->
   <div class="container-fluid">

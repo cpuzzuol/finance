@@ -1,22 +1,42 @@
 @extends('layout.default')
 @section('content')
-  <p>At the top, allow for the entry of expenditures</p>
-  <p>At the bottom, show a list of entries by day for the current month and allow user to swipe side-to-side to see daily budget</p>
 
+  <!-- CREATE INCOME-->
+  @if(Session::has('message'))
+    {{ HTML::userupdate(Session::get('message')) }}
+  @endif
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-offset-4 col-sm-4">
+      <h2>Add Income</div>
+    </div>
+  </div>
   {{ Form::open(array('route'=>'income.store')) }}
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col-xs-12 col-sm-offset-4 col-sm-4">
       <div class="input-group">
         <span class="input-group-addon">$</span>
+        {{ Form::label('amount', 'Amount', array('class'=>'sr-only')) }}
         {{ Form::text('amount', '', array('class'=>'form-control')) }}
         {{ $errors->first('amount') }}
       </div>
     </div>
-    <div class="col-sm-4">
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-offset-4 col-sm-4">
+      {{ Form::label('categories', 'Income Categories', array('class'=>'sr-only')) }}
       {{ Form::select('categories', $categories, '', array('class'=>'form-control'))}}
     </div>
-    <div class="col-sm-4">
-      {{ Form::submit('save amount', array('class'=>'form-control btn btn-success')) }}
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-offset-4 col-sm-4">
+      {{ Form::label('description', 'Description:', array('class'=>'control-label')) }}
+      {{ Form::text('description', null, array('class'=>'form-control', 'placeholder'=>'i.e. Paycheck No.2')) }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-offset-4 col-sm-4">
+      {{ Form::submit('save amount', array('class'=>'btn btn-success')) }}
     </div>
   </div>
   {{ Form::close() }}

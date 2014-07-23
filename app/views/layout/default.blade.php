@@ -26,28 +26,42 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#">Finance Manager</a>
+              <a class="navbar-brand" href="/laravel">Finance Manager</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-              <li>{{ HTML::link('/planner/create/', 'Overview') }}</li>
-                <li><a href="#">Income</a></li>
-                <li><a href="#">Savings</a></li>
-                <li><a href="#">Deductions</a></li>
-                <li><a href="#">Expenditures</a></li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
+                <li>{{ HTML::link('/planner/create/', 'Overview') }}</li>
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account<span class="caret"></span></a>
+                  <a href="{{ URL::route('income.create') }}" class="dropdown-toggle" data-toggle="dropdown">
+                    Income
+                    <span class="caret"></span>
+                  </a>
                   <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Settings</a></li>
-                    <li><a href="#">Information</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Logout</a></li>
+                    <li>{{ HTML::link('/income/create', 'New Income') }}</li>
+                    <li>{{ HTML::link('/income-category', 'Categories') }}</li>
                   </ul>
                 </li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                @if(Auth::check())
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      {{ Auth::user()->username; }}
+                      <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Settings</a></li>
+                    <li>{{ HTML::link('/users/'.Auth::user()->id.'/edit', 'Information') }}</li>
+                    <li class="divider"></li>
+                    <li>{{ HTML::link('logout', 'Logout') }}</li>
+                  </ul>
+                </li>
+                @else
+                <li>{{ HTML::link('login', 'Login') }}</li>
+                <li>{{ HTML::link('/users/create', 'Register') }}</li>
+                @endif
               </ul>
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
