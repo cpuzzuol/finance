@@ -23,8 +23,15 @@ Route::resource('users', 'UserController');
 Route::get('login','SessionsController@create');
 Route::get('logout', 'SessionsController@destroy');
 Route::resource('sessions', 'SessionsController');
+
 Route::resource('income', 'IncomeController');
 Route::resource('income-category', 'IncomeCategoryController');
+Route::resource('savings', 'SavingsController');
+Route::resource('savings-category', 'SavingsCategoryController');
+Route::resource('deductions', 'DeductionsController');
+Route::resource('deductions-category', 'DeductionsCategoryController');
+Route::resource('expenditures', 'ExpendituresController');
+Route::resource('expenditures-category', 'ExpendituresCategoryController');
 
 // optional category with a default
 Route::put('income-category/update/', array('uses'=>'IncomeCategoryController.update'));

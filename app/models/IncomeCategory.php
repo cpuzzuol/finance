@@ -12,20 +12,4 @@ class IncomeCategory extends Eloquent {
 
   protected $fillable = ['income'];
 
-  public static $errors;
-
-  //store validation rules
-  public static $rules = [
-    'income' => 'required'
-  ];
-
-  public static function isValid($data){
-     if(!Validating\ValidateForms::isValid($data, static::$rules)){
-       static::$errors = Validating\ValidateForms::$errors;
-       return false;
-     } else {
-       return true;
-     }
-  }
-
 }
