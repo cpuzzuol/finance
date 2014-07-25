@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Jul 16, 2014 at 03:28 PM
+-- Generation Time: Jul 25, 2014 at 10:21 AM
 -- Server version: 5.5.36
 -- PHP Version: 5.4.30
 
@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `fin_income` (
   `amount` decimal(10,2) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=83 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=86 ;
 
 --
 -- Dumping data for table `fin_income`
@@ -178,7 +178,10 @@ INSERT INTO `fin_income` (`id`, `user_id`, `income_id`, `income_desc`, `income_d
 (79, 1, 1, 'Test YO!', '2014-07-09', '54.00', '2014-07-09 21:46:37', '2014-07-09 21:46:37'),
 (80, 1, 1, 'Test YO!', '2014-07-16', '45.00', '2014-07-16 23:13:20', '2014-07-16 23:13:20'),
 (81, 1, 1, 'Test YO!', '2014-07-16', '23.00', '2014-07-17 02:01:00', '2014-07-17 02:01:00'),
-(82, 29, 1, 'Test YO!', '2014-07-16', '454.59', '2014-07-17 02:10:25', '2014-07-17 02:10:25');
+(82, 29, 1, 'Test YO!', '2014-07-16', '454.59', '2014-07-17 02:10:25', '2014-07-17 02:10:25'),
+(83, 29, 1, 'Test YO!', '2014-07-23', '100.00', '2014-07-23 19:33:59', '2014-07-23 19:33:59'),
+(84, 29, 2, 'Yeomenssdsf', '2014-07-23', '50.01', '2014-07-23 21:52:35', '2014-07-23 19:48:50'),
+(85, 29, 1, '', '2014-07-23', '0.00', '2014-07-24 00:41:34', '2014-07-24 00:41:24');
 
 -- --------------------------------------------------------
 
@@ -253,7 +256,7 @@ CREATE TABLE IF NOT EXISTS `fin_users` (
 
 INSERT INTO `fin_users` (`id`, `username`, `email`, `password`, `updated_at`, `created_at`, `remember_token`) VALUES
 (1, 'root', 'root@root.com', 'epthnw2y', '2014-07-03 15:42:25', '2014-06-25 19:26:14', ''),
-(29, 'cpuzzuol09', 'cpuzzuol@gmail.com', '$2y$10$lyHsDhz2UFY2vsgMlNs89OHZdEwsbLzaD2rGJzDJ/wB9wDk1NjFkm', '2014-07-03 20:33:16', '2014-07-03 20:30:16', 'NKyaV85C82AQNjHGjn62Ef90TFw4OZpWSGtHPTlVc0HqNQ5EW8SvwlEzRjJ4'),
+(29, 'cpuzzuol09', 'cpuzzuol@gmail.com', '$2y$10$lyHsDhz2UFY2vsgMlNs89OHZdEwsbLzaD2rGJzDJ/wB9wDk1NjFkm', '2014-07-23 23:38:39', '2014-07-03 20:30:16', 'eWYGxBxl2c4cDQqV6PVwzK39TBtoXmWu4wlFqMCNNivufww3blhgYs6XIY3h'),
 (30, 'ciso', 'cpuzzuol@gmail.com', '$2y$10$gyPqruUCZaE5ydxfhlRmO.bRx8HrZvqQ3fixebyCARpU0IMh/wpw6', '2014-07-11 23:58:04', '2014-07-11 23:58:04', ''),
 (31, 'ciso', 'cpuzzuol@gmail.com', '$2y$10$.LB.hRcvyQ45If6snro34e9R7iP3tyuP1cuUVJowZTKqoSqUpynkq', '2014-07-11 23:59:13', '2014-07-11 23:59:13', ''),
 (32, 'he', 'cpuzzuol@gmail.com', '$2y$10$m1kHRJZpb1eJgQVen9VY0eywbmLa.TSNHvE3Jrxk97crUxM.D0Ere', '2014-07-11 23:59:25', '2014-07-11 23:59:25', ''),
@@ -374,7 +377,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `fin_income`
 --
 ALTER TABLE `fin_income`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=83;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=86;
 --
 -- AUTO_INCREMENT for table `fin_income_category`
 --
