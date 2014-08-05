@@ -1,0 +1,45 @@
+<?php $__env->startSection('content'); ?>
+
+  <!-- CREATE INCOME-->
+  <?php if(Session::has('message')): ?>
+    <?php echo HTML::userupdate(Session::get('message')); ?>
+  <?php endif; ?>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-offset-4 col-sm-4">
+      <h2>Add Income</div>
+    </div>
+  </div>
+  <?php echo Form::open(array('route'=>'income.store')); ?>
+  <div class="row">
+    <div class="col-xs-12 col-sm-offset-4 col-sm-4">
+      <div class="input-group">
+        <span class="input-group-addon">$</span>
+        <?php echo Form::label('amount', 'Amount', array('class'=>'sr-only')); ?>
+        <?php echo Form::text('amount', '', array('class'=>'form-control')); ?>
+        <?php echo $errors->first('amount'); ?>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-offset-4 col-sm-4">
+      <?php echo Form::label('categories', 'Income Categories', array('class'=>'sr-only')); ?>
+      <?php echo Form::select('categories', $categories, '', array('class'=>'form-control')); ?>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-offset-4 col-sm-4">
+      <?php echo Form::label('description', 'Description:', array('class'=>'control-label')); ?>
+      <?php echo Form::text('description', null, array('class'=>'form-control', 'placeholder'=>'i.e. Paycheck No.2')); ?>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-offset-4 col-sm-4">
+      <?php echo Form::submit('save amount', array('class'=>'btn btn-success')); ?>
+    </div>
+  </div>
+  <?php echo Form::close(); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layout.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
