@@ -1,0 +1,30 @@
+<li class="dropdown">
+                  <a href="{{ URL::route('savings.create') }}" class="dropdown-toggle" data-toggle="dropdown">
+                    Savings
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li>{{ HTML::link('/savings/create', 'New Savings') }}</li>
+                    <li>{{ HTML::link('/savings-category', 'Categories') }}</li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="{{ URL::route('deductions.create') }}" class="dropdown-toggle" data-toggle="dropdown">
+                    Deductions
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li>{{ HTML::link('/deductions/create', 'New Deduction') }}</li>
+                    <li>{{ HTML::link('/deductions-category', 'Categories') }}</li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="{{ URL::route('expenditures.create') }}" class="dropdown-toggle" data-toggle="dropdown">
+                    Expenditures
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li>{{ HTML::link('/expenditures/create', 'New Expenditure') }}</li>
+                    <li>{{ HTML::link('/expenditures-category', 'Categories') }}</li>
+                  </ul>
+                </li>
