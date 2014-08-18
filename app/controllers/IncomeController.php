@@ -28,7 +28,7 @@ class IncomeController extends \BaseController {
 	 */
 	public function create()
 	{
-    return View::make('income.create')->with('categories', $this->categories->show(null));
+    	return View::make('income.create')->with('categories', $this->categories->show(null));
 	}
 
 
@@ -39,29 +39,28 @@ class IncomeController extends \BaseController {
 	 */
 	public function store()
 	{
-    $input = [
-      'user_id' => Auth::id(),
-      'income_id' => Input::get('categories'),
-      'income_desc' => Input::get('description'),
-      'income_date' => date('Y-m-d'),
-      'amount' => Input::get('amount')
-    ];
-    $rules = [
-      'user_id' => 'integer',
-      'income_id' => 'integer',
-      'income_date' => 'dateFormat:YYYY-MM-DD',
-      'amount' => 'required|numeric'
-    ];
-
-    $validation = new Validating\ValidateForms($rules);
-
-    if($validation->passes()){
-      $newRecord = $this->income->create($input);
-      return Redirect::route('income.edit', array('id' => $newRecord->id))->with('message', 'success');
-    }
-
-    return Redirect::back()->withInput()->withErrors($validation->getErrors())->with('message', 'errors');
-
+		$input = [
+		  'user_id' => Auth::id(),
+		  'income_id' => Input::get('categories'),
+		  'income_desc' => Input::get('description'),
+		  'income_date' => date('Y-m-d'),
+		  'amount' => Input::get('amount')
+		];
+		$rules = [
+		  'user_id' => 'integer',
+		  'income_id' => 'integer',
+		  'income_date' => 'dateFormat:YYYY-MM-DD',
+		  'amount' => 'required|numeric'
+		];
+	
+		$validation = new Validating\ValidateForms($rules);
+	
+		if($validation->passes()){
+		  $newRecord = $this->income->create($input);
+		  return Redirect::route('income.edit', array('id' => $newRecord->id))->with('message', 'created');
+		}
+	
+		return Redirect::back()->withInput()->withErrors($validation->getErrors())->with('message', 'errors');
 	}
 
 
@@ -121,7 +120,7 @@ class IncomeController extends \BaseController {
       $record->income_date = $input['income_date'];
       $record->amount = $input['amount'];
       $record->save();
-      return Redirect::route('income.edit', array('id' => $record->id));
+      return Redirect::route('income.edit', array('id' => $record->id))->with('message', 'updated');
     }
 
     return Redirect::back()->withInput()->withErrors($validation->getErrors());

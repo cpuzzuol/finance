@@ -15,7 +15,7 @@ class IncomeCategoryController extends \BaseController {
 	 */
 	public function index()
 	{
-    return View::make('income-category.index')->with(array('categories'=> IncomeCategory::lists('income','id'), 'message'=>'success'));
+    	return View::make('income-category.index')->with(array('categories'=> IncomeCategory::lists('income','id'), 'message'=>'created'));
 	}
 
 
@@ -37,7 +37,21 @@ class IncomeCategoryController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$input = [
+		  'income' => Input::get('category_name'),
+		];
+		$rules = [
+		  'income' => 'required',
+		];
+	
+		$validation = new Validating\ValidateForms($rules, $input);
+	
+		if($validation->passes()){
+		  $newRecord = $this->incomeCategory->create($input);
+		  return Redirect::route('income-category.index')->with('message', 'created');
+		}
+	
+		return Redirect::back()->withInput()->withErrors($validation->getErrors())->with('message', 'errors');
 	}
 
 
@@ -83,7 +97,7 @@ class IncomeCategoryController extends \BaseController {
       $record->income = Input::get('category_name');
       $record->save();
 
-      return View::make('income-category.index')->with(array('categories'=> IncomeCategory::lists('income','id'), 'message'=>'success'));
+      return View::make('income-category.index')->with(array('categories'=> IncomeCategory::orderBy('order')->lists('income','id'), 'message'=>'updated'));
     }
 
     return Redirect::back()->withInput()->withErrors($validation->getErrors());
@@ -98,7 +112,8 @@ class IncomeCategoryController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$this->incomeCategory->find($id)->delete();
+		return Redirect::route('income-category.index')->with('message', 'deleted');
 	}
 
 }

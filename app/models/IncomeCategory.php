@@ -10,6 +10,6 @@ class IncomeCategory extends Eloquent {
 
   protected $table = 'fin_income_category';
 
-  protected $fillable = ['income'];
+  protected $fillable = ['income', 'order'];
 
 }

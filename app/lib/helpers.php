@@ -14,9 +14,15 @@
 
 HTML::macro('userupdate', function($updateType){
   switch($updateType){
-    case "success":
-      return '<p class="bg-success">Your information has been updated.</p>';
+    case "created":
+      return '<p class="bg-success">Your record has been created.</p>';
       break;
+	case "updated":
+	  return '<p class="bg-success">Your record has been updated.</p>';
+	  break;
+	case "deleted":
+	  return '<p class="bg-success">Your record has been deleted.</p>';
+	  break; 
     case "errors":
       return '<p class="bg-danger">Please fix the errors before continuing.</p>';
       break;

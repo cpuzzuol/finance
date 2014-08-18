@@ -2,6 +2,10 @@
 @section('content')
 
   <!-- EDIT INCOME-->
+  @if(Session::has('message'))
+    {{ HTML::userupdate(Session::get('message')) }}
+  @endif
+  
   <div class="row">
     <div class="col-xs-12 col-sm-offset-4 col-sm-4">
       <h2>Edit Income</div>

@@ -5,7 +5,7 @@
       <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
       <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,400italic' rel='stylesheet' type='text/css'>
       {{ HTML::style('//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.2/jquery.mobile.min.css') }}
-      {{ HTML::script('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css') }}
+      {{ HTML::style('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css') }}
       {{ HTML::script('//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js') }}
       {{ HTML::script('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js') }}
       {{ HTML::style('less/bootstrap.less', array('rel' => 'stylesheet/less')) }}
