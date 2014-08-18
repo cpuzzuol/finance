@@ -15,7 +15,7 @@ class IncomeCategoryController extends \BaseController {
 	 */
 	public function index()
 	{
-    	return View::make('income-category.index')->with(array('categories'=> IncomeCategory::lists('income','id'), 'message'=>'created'));
+    	return View::make('income-category.index')->with(array('categories'=> IncomeCategory::orderBy('order')->lists('income','id'), 'message'=>'created'));
 	}
 
 
@@ -26,7 +26,7 @@ class IncomeCategoryController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		return "CREATE!";
 	}
 
 
@@ -116,4 +116,17 @@ class IncomeCategoryController extends \BaseController {
 		return Redirect::route('income-category.index')->with('message', 'deleted');
 	}
 
+	public function first(){
+		return View::make('income-category.selber');	
+	}
+	
+	public function second(){	
+		$orders = Input::all();
+		
+		foreach($orders as $order){
+			$folge[] = $order;	
+		}
+		
+		return Response::json($orders);
+	}
 }

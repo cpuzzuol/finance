@@ -1,1 +1,1 @@
-<?php $_POST['item']; ?>
+<?php var_dump($_POST); ?>

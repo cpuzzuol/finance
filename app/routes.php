@@ -16,7 +16,17 @@ Route::get('/', function()
 	return View::make('index');
 });
 
-
+// Sortable category list
+  //Settings: show form to create settings
+Route::get( 'serial', array(
+    'uses' => 'IncomeCategoryController@second'
+) );
+ 
+  //Settings: create a new setting
+Route::post( '/income-category/second', array(
+    'as' => 'income-category.second',
+    'uses' => 'IncomeCategoryController@second'
+) );
 
 Route::resource('users', 'UserController');
 
